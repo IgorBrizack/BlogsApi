@@ -10,6 +10,7 @@ module.exports = {
         primaryKey: true,
        }, 
        category_id: {
+        type:Sequelize.INTEGER,
         onUpdate: 'CASCADE',
         onDelete: 'CASCADE',
         primaryKey: true,
