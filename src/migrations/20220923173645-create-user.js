@@ -9,6 +9,9 @@ module.exports = {
         allowNull: false,
         autoIncrement: true,
       },
+      display_name: {
+        type: Sequelize.STRING,
+      },
       email: {
         unique: true,
         type: Sequelize.STRING,
@@ -20,7 +23,6 @@ module.exports = {
       },
       image: {
         type: Sequelize.STRING,
-        allowNull: false,
       } 
     });
   },
