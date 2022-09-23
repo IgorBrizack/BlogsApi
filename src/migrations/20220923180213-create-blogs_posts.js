@@ -13,19 +13,22 @@ module.exports = {
         type: Sequelize.STRING,
         allowNull: false,
       },
+      content: {
+        type: Sequelize.STRING
+      },
       user_id: {
         type: Sequelize.INTEGER,
         allowNull: false,
         references: {
-          model: "Users",
+          model: "users",
           key: "id"
         }
       },
       published: {
-        type: Sequelize.STRING,
+        type: Sequelize.DATE,
       }, 
       updated: {
-        type: Sequelize.STRING,
+        type: Sequelize.DATE,
       }
     });
   },
