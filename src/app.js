@@ -1,11 +1,17 @@
 const express = require('express');
 const User = require('./controllers/user.controller');
+const Login = require('./controllers/login.controller');
+const LoginMiddleware = require('./middlewares');
 
 // ...
 
 const app = express();
 
 app.use(express.json());
+
+app.post('/login',
+  LoginMiddleware.validateUser,
+  Login.getToken);
 
 app.get('/user', User.getAllUser);
 // ...
