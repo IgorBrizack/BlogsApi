@@ -9,12 +9,12 @@ module.exports = (sequelize, DataTypes) => {
     underscored: true,
   });
 
-  Categories.associate = (models) => {
-    Categories.hasMany(models.PostsCategoriesSchema, {
-      as: "posts_categories",
-      foreignKey: "post_id"
-    })
-  }
+  // Categories.associate = (models) => {
+  //   Categories.hasMany(models.PostsCategoriesSchema, {
+  //     as: "posts_categories",
+  //     foreignKey: "post_id"
+  //   })
+  // }
 
   return Categories;
 };

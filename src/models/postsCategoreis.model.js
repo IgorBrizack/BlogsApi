@@ -8,22 +8,22 @@ const PostsCategoriesSchema = (sequelize, DataTypes) => {
       }
   );
 
-  PostCategories.associate = (models) => {
-      models.Categories.belongsToMany(models.Categories, {
-          as: "category_id",
-          through: PostCategories,
-          foreignKey: 'post_id',
-          otherKey: 'category_id'
-      });
-      models.Module.belongsToMany(models.BlogsPosts, {
-          as: "post_id",
-          through: PostCategories,
-          foreignKey: 'categoriy_id',
-          otherKey: 'post_id'
-      });
-  }
+//   PostCategories.associate = (models) => {
+//       models.Categories.belongsToMany(models.Categories, {
+//           as: "category_id",
+//           through: PostCategories,
+//           foreignKey: 'post_id',
+//           otherKey: 'category_id'
+//       });
+//       models.BlogsPosts.belongsToMany(models.BlogsPosts, {
+//           as: "post_id",
+//           through: PostCategories,
+//           foreignKey: 'categoriy_id',
+//           otherKey: 'post_id'
+//       });
+//   }
 
-  return CourseModuleTable;
+  return PostCategories;
 }
 
 module.exports = PostsCategoriesSchema;

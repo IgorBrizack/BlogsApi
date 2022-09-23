@@ -1,11 +1,13 @@
-const userModel = require('../models/User');
+const { User } = require('../models');
 
-const getUserToken = async (loginData) => {
-  const usersData = await userModel.findAll();
-  console.log(loginData);
-  return usersData;
+const getUsers = async ({ email, password }) => {
+  const usersData = await User.findOne({ where: { email } });
+
+  if (usersData && usersData.password === password) return usersData;
+  
+  return false;
 };
 
 module.exports = {
-  getUserToken,
+  getUsers,
 };

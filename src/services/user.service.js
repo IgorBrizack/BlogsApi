@@ -1,7 +1,7 @@
-const userModel = require('../models/User');
+const { User } = require('../models');
 
 const getAllUsers = async () => {
-  const usersData = await userModel.findAll();
+  const usersData = await User.findAll();
   return usersData;
 };
 
