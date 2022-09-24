@@ -1,5 +1,5 @@
 const LoginService = require('../services/login.service');
-const generateToken = require('../generateToken/generateToken');
+const { generateToken } = require('../generateToken/generateToken');
 
 const getToken = async (req, res) => {
   const { email, password } = req.body;

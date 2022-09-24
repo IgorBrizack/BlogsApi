@@ -10,12 +10,16 @@ const app = express();
 app.use(express.json());
 
 app.post('/login',
-  Middleware.validations,
+  Middleware.validateMailPassword,
   Login.getToken);
 
 app.post('/user',
-  Middleware.validations,
+  Middleware.validateUserData,
   User.insertUserController);
+
+app.get('/user',
+  Middleware.validateToken,
+  User.getAllUsers);
 // ...
 
 // É importante exportar a constante `app`,

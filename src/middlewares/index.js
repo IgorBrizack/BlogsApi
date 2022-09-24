@@ -1,5 +1,9 @@
-const validations = require('./validateUser');
+const validateMailPassword = require('./validateMailPassword');
+const validateToken = require('./validateToken');
+const validateUserData = require('./validateUserData');
 
 module.exports = {
-  validations,
+  validateMailPassword,
+  validateToken,
+  validateUserData,
 };

@@ -12,6 +12,12 @@ const insertUserController = async (req, res) => {
   res.status(201).json({ token });
 };
 
+const getAllUsers = async (_req, res) => {
+  const data = await UserService.getAllUsersService();
+  res.status(200).json({ data });
+};
+
 module.exports = {
   insertUserController,
+  getAllUsers,
 };
