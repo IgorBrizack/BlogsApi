@@ -11,7 +11,7 @@ const insertUserService = async ({ displayName, email, password, image }) => {
 };
 
 const getAllUsersService = async () => {
-  const allUsers = await User.findAll();
+  const allUsers = await User.findAll({ attributes: { exclude: ['password'] } });
 
   return allUsers;
 };
