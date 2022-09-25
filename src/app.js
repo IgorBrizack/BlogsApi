@@ -30,6 +30,10 @@ app.post('/user',
     Middleware.validateToken,
     Middleware.validateNameField,
     Category.postCategory);
+
+    app.get('/categories',
+    Middleware.validateToken,
+    Category.getAllCategories);
 // ...
 
 // É importante exportar a constante `app`,

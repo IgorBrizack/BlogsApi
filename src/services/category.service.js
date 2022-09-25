@@ -5,6 +5,13 @@ const postCategoryService = async ({ name }) => {
   return newCategory;
 };
 
+const getAllCategoriesService = async () => {
+  const allCategories = Category.findAll();
+
+  return allCategories;
+};
+
 module.exports = {
   postCategoryService,
+  getAllCategoriesService,
 };
