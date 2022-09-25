@@ -1,5 +1,9 @@
 const Joi = require('joi');
 
+const schema3 = Joi.object({
+  name: Joi.string().required(),
+});
+
 const schema2 = Joi.object({
   email: Joi.string().required().email().messages({
     'string.empty': 'Some required fields are missing',
@@ -24,4 +28,4 @@ const schema1 = Joi.object({
   }),
 });
 
-module.exports = { schema1, schema2 };
+module.exports = { schema1, schema2, schema3 };
