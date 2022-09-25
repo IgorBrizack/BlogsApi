@@ -16,10 +16,14 @@ app.post('/login',
 app.post('/user',
   Middleware.validateUserData,
   User.insertUserController);
-
-app.get('/user',
+  
+  app.get('/user',
   Middleware.validateToken,
   User.getAllUsers);
+  
+  app.get('/user/:id',
+    Middleware.validateToken,
+    User.getUserById);
 // ...
 
 // É importante exportar a constante `app`,
