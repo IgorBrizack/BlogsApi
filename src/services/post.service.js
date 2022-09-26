@@ -94,7 +94,13 @@ const attPostService = async ({ title, content }, id) => {
   const [qtdUpdated] = await BlogPost.update({ title, content }, { where: { id } });
   return qtdUpdated > 0;
 };
- 
+
+const deletePostService = async (id) => {
+  await BlogPost.destroy({ where: { id } });
+  
+  return true;
+}; 
+
 module.exports = { 
   insertPostService,
   getUserById,
@@ -102,4 +108,5 @@ module.exports = {
   getPostsByIdService,
   getPostById,
   attPostService,
+  deletePostService,
   };
