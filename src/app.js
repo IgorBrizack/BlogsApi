@@ -47,6 +47,11 @@ app.get('/post/:id',
   Middleware.validateToken,
   Post.insertPostById);
 
+app.put('/post/:id', 
+  Middleware.validateToken,
+  Middleware.validatePostPut,
+  Post.attualizePostById);
+
 // É importante exportar a constante `app`,
 // para que possa ser utilizada pelo arquivo `src/server.js`
 module.exports = app;

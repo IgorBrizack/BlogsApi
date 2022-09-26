@@ -3,6 +3,17 @@ const Joi = require('joi');
 const StringEmpty = 'Some required fields are missing';
 const InvalidFields = 'Invalid fields';
 
+const schema5 = Joi.object({
+  title: Joi.string().required().messages({
+    'string.empty': StringEmpty,
+    'any.required': InvalidFields,
+  }),
+  content: Joi.string().required().messages({
+    'string.empty': StringEmpty,
+    'any.required': InvalidFields,
+  }),
+});
+
 const schema4 = Joi.object({
   title: Joi.string().required().messages({
     'string.empty': StringEmpty,
@@ -43,4 +54,10 @@ const schema1 = Joi.object({
   }),
 });
 
-module.exports = { schema1, schema2, schema3, schema4 };
+module.exports = {
+  schema1,
+  schema2,
+  schema3,
+  schema4,
+  schema5,
+  };

@@ -73,9 +73,16 @@ const getPostsByIdService = async (id) => {
   return post;
 };
 
+const getPostById = async (id) => {
+  const post = await BlogPost.findOne({ where: { id } });
+
+  return post;
+};
+ 
 module.exports = { 
   insertPostService,
   getUserById,
   getPostsService,
   getPostsByIdService,
+  getPostById,
   };

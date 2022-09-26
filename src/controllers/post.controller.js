@@ -32,8 +32,21 @@ const insertPostById = async (req, res) => {
   return res.status(200).json(data);
 };
 
+const attualizePostById = async (req, res) => {
+  const { id } = req.body;
+  const payload = req.user;
+
+  const userId = await Post.getUserById(payload);
+  if (id !== userId) return res.status(401).json({ message: 'Unauthorized user' });
+
+  const hasPost = await Post.getPostById(id);
+
+  if (!hasPost) { return res.status(200).json(hasPost); }
+};
+
 module.exports = {
   insertPost,
   getPosts,
   insertPostById,
+  attualizePostById,
 };
