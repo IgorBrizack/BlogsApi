@@ -51,8 +51,31 @@ const getPostsService = async (userId) => {
   return posts;
 };
 
+const getPostsByIdService = async (id) => {
+  const post = await BlogPost
+  .findOne({ where: { id },
+    attributes: { exclude: ['UserId'] },
+    include: [{ 
+    model: User,
+    as: 'user',
+    attributes: {
+      exclude: ['password'],
+    },
+   }, { 
+    model: Category,
+     as: 'categories',
+     through: {
+      attributes: [],
+      // Isso significa que da tabela intermediária, não quero que ele traga nada.
+     },
+    }] });
+
+  return post;
+};
+
 module.exports = { 
   insertPostService,
   getUserById,
   getPostsService,
+  getPostsByIdService,
   };
