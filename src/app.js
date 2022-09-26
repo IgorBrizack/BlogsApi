@@ -37,6 +37,7 @@ app.get('/categories',
 app.post('/post',
   Middleware.validateToken,
   Middleware.validateNewPost,
+  // Middleware.validateCategories,
   Post.insertPost);
 
 // É importante exportar a constante `app`,

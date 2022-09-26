@@ -1,5 +1,5 @@
 const Sequelize = require('sequelize');
-const { BlogPost, User, PostCategories } = require('../models');
+const { BlogPost, User, PostCategory } = require('../models');
 
 const config = require('../config/config');
 
@@ -18,7 +18,7 @@ const insertPostService = async ({ title, content, categoryIds }, id) => {
     const newPost = await BlogPost.create({ title, content, userId: id },
         { transaction: t });
     const insertCategories = categoryIds.map((el) =>
-     PostCategories.create({ postId: newPost.id, categoryId: el },
+     PostCategory.create({ postId: newPost.id, categoryId: el },
       { transaction: t }));
     await Promise.all(insertCategories);
     await t.commit();
