@@ -37,8 +37,11 @@ app.get('/categories',
 app.post('/post',
   Middleware.validateToken,
   Middleware.validateNewPost,
-  // Middleware.validateCategories,
   Post.insertPost);
+
+app.get('/post',
+  Middleware.validateToken,
+  Post.getPosts);
 
 // É importante exportar a constante `app`,
 // para que possa ser utilizada pelo arquivo `src/server.js`

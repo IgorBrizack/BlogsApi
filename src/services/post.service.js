@@ -1,5 +1,5 @@
 const Sequelize = require('sequelize');
-const { BlogPost, User, PostCategory } = require('../models');
+const { BlogPost, User, PostCategory, Category } = require('../models');
 
 const config = require('../config/config');
 
@@ -29,4 +29,29 @@ const insertPostService = async ({ title, content, categoryIds }, id) => {
   }
 };
 
-module.exports = { insertPostService, getUserById };
+const getPostsService = async (userId) => {
+  const posts = await BlogPost
+  .findAll({ where: { userId },
+    include: [{ 
+    model: User,
+    as: 'user',
+    attributes: {
+      exclude: ['password'],
+    },
+   }, { 
+    model: Category,
+     as: 'categories',
+     through: {
+      attributes: [],
+      // Isso significa que da tabela intermediária, não quero que ele traga nada.
+     },
+    }] });
+
+  return posts;
+};
+
+module.exports = { 
+  insertPostService,
+  getUserById,
+  getPostsService,
+  };
