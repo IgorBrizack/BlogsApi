@@ -74,9 +74,25 @@ const getPostsByIdService = async (id) => {
 };
 
 const getPostById = async (id) => {
-  const post = await BlogPost.findOne({ where: { id } });
+  const post = await BlogPost.findOne({ where: { id },
+    attributes: { exclude: ['UserId'] },
+    include: [{ 
+    model: User,
+    as: 'user',
+    attributes: {
+      exclude: ['password'],
+    },
+   }, { 
+    model: Category,
+     as: 'categories',
+    }] });
 
   return post;
+};
+
+const attPostService = async ({ title, content }, id) => {
+  const [qtdUpdated] = await BlogPost.update({ title, content }, { where: { id } });
+  return qtdUpdated > 0;
 };
  
 module.exports = { 
@@ -85,4 +101,5 @@ module.exports = {
   getPostsService,
   getPostsByIdService,
   getPostById,
+  attPostService,
   };
