@@ -32,6 +32,7 @@ const insertPostService = async ({ title, content, categoryIds }, id) => {
 const getPostsService = async (userId) => {
   const posts = await BlogPost
   .findAll({ where: { userId },
+    attributes: { exclude: ['UserId'] },
     include: [{ 
     model: User,
     as: 'user',
