@@ -74,9 +74,15 @@ const deletePostById = async (req, res) => {
   if (isDeleted) return res.sendStatus(204);
 
   return res.status(404).json({ message: 'Post does not exist' });
-
-  // const updatedPost = await Post.getPostsByIdService(id);
 }; 
+
+const getPostsByTitle = async (req, res) => {
+  const { q } = req.query;
+
+  const dataPosts = await Post.getSearchedPosts(q);
+
+  return res.status(200).json(dataPosts);
+};
 
 module.exports = {
   insertPost,
@@ -84,4 +90,5 @@ module.exports = {
   insertPostById,
   attualizePostById,
   deletePostById,
+  getPostsByTitle,
 };

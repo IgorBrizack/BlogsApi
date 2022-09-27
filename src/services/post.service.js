@@ -101,6 +101,23 @@ const deletePostService = async (id) => {
   return true;
 }; 
 
+const getSearchedPosts = async (searching) => {
+  let posts;
+
+  if (searching) {
+    posts = await BlogPost.findAll({ where: { title: searching, content: searching } });
+    return posts;
+  }
+
+  if (!searching) {
+    posts = await BlogPost.findAll();
+    return posts;
+  }
+
+  if (!posts) return [];
+  return posts;
+};
+
 module.exports = { 
   insertPostService,
   getUserById,
@@ -109,4 +126,5 @@ module.exports = {
   getPostById,
   attPostService,
   deletePostService,
+  getSearchedPosts,
   };
