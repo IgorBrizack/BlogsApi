@@ -24,8 +24,19 @@ const getUserByIdService = async (id) => {
   return user;
 };
 
+const getLogedUserService = async (payload) => {
+  const { id } = await User.findOne({ where: { email: payload.data.email } });
+  return id;
+};
+
+const deleteUserService = async (id) => {
+  await User.destroy({ where: { id } });
+};
+
 module.exports = {
   insertUserService,
   getAllUsersService,
   getUserByIdService,
+  getLogedUserService,
+  deleteUserService,
 };

@@ -56,6 +56,10 @@ app.delete('/post/:id',
   Middleware.validateToken,
   Post.deletePostById);
 
+app.delete('/user/me', 
+  Middleware.validateToken,
+  User.deleteUser);
+
 // É importante exportar a constante `app`,
 // para que possa ser utilizada pelo arquivo `src/server.js`
 module.exports = app;
