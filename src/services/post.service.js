@@ -1,4 +1,5 @@
 const Sequelize = require('sequelize');
+const { Op } = require('sequelize');
 const { BlogPost, User, PostCategory, Category } = require('../models');
 
 const config = require('../config/config');
@@ -102,19 +103,25 @@ const deletePostService = async (id) => {
 }; 
 
 const getSearchedPosts = async (searching) => {
-  let posts;
-
-  if (searching) {
-    posts = await BlogPost.findAll({ where: { title: searching, content: searching } });
-    return posts;
-  }
-
-  if (!searching) {
-    posts = await BlogPost.findAll();
-    return posts;
-  }
-
-  if (!posts) return [];
+    // referência de uso do Op.or Op.like
+    // sequelize.org/docs/v6/core-concepts/model-querying-basics/#operators
+  const posts = await BlogPost
+    .findAll({ where: { [Op.or]: [{ title: { [Op.substring]: searching } },
+      { content: { [Op.substring]: searching } }] },
+      attributes: { exclude: ['UserId'] },
+      include: [{ model: User,
+      // on: 'userId',  
+      as: 'user',
+      attributes: { exclude: ['password'],
+    },
+    }, { 
+      model: Category,
+      as: 'categories',
+      through: {
+      attributes: [],
+      // Isso significa que da tabela intermediária, não quero que ele traga nada.
+      },
+    }] });
   return posts;
 };
 

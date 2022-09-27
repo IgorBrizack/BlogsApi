@@ -43,6 +43,10 @@ app.get('/post',
   Middleware.validateToken,
   Post.getPosts);
 
+app.get('/post/search',
+  Middleware.validateToken,
+  Post.getPostsByTitle);
+
 app.get('/post/:id', 
   Middleware.validateToken,
   Post.insertPostById);
@@ -58,11 +62,7 @@ app.delete('/post/:id',
 
 app.delete('/user/me', 
   Middleware.validateToken,
-  User.deleteUser);
-
-app.get('/post/search',
-  Middleware.validateToken,
-  Post.getPostsByTitle);
+  User.deleteUser);  
 
 // É importante exportar a constante `app`,
 // para que possa ser utilizada pelo arquivo `src/server.js`
