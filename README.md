@@ -2,7 +2,7 @@
 
 ## 📄 Sobre
 
-Foi desenvolvido uma API e um banco de dados para a produção de conteúdo para um blog!
+Foi desenvolvido uma API e um banco de dados para a produção de conteúdo para um blog, utilizando autenticadores e ORM!
 
 ## 📋 Execute o projeto em sua máquina
 
